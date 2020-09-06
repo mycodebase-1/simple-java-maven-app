@@ -1,0 +1,13 @@
+Type: SecurityScanSpecs
+Properties:
+  TeamName: Dell Technology Services
+  TeamEmail: dts@dell.com
+  ApplicationName: Security Scanner
+  ApplicationDescription: Static scanning of the applications
+  BreakBuild: Apply
+  ScanSpecs:
+    - ToolName: SonarQube
+      BreakBuild: Apply
+    - ToolName: Clair
+      BreakBuild: Apply
+
