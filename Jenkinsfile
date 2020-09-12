@@ -12,7 +12,7 @@ node('master') {
  step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
  stage 'Security Scan using the SG Tool'
  sh "cd ${env.WORKSPACE}"
- sh "docker run --rm --net=host -v ${PWD}:/project -v /var/run/docker.sock:/var/run/docker.sock --name scancont -e SEC_BASE_PATH=http://54.79.131.67:8080 -e CLAIR_ADDR=54.79.131.67 sg-scanner"
+ sh "docker run --rm --net=host -v ${env.WORKSPACE}:/project -v /var/run/docker.sock:/var/run/docker.sock --name scancont -e SEC_BASE_PATH=http://54.79.131.67:8080 -e CLAIR_ADDR=54.79.131.67 sg-scanner"
 }
 def version() {
  def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
