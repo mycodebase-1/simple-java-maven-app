@@ -7,8 +7,8 @@ node('master') {
  echo "Building version ${appVersion}"
  }
  stage 'Build Maven project'
- def mvnHome = which mvn
- sh "${mvnHome} -B -Dmaven.test.failure.ignore verify"
+ // def mvnHome = which mvn
+ sh "mvn -B -Dmaven.test.failure.ignore verify"
  step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
 }
 def version() {
