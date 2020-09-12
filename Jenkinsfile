@@ -1,4 +1,4 @@
-node('remote') {
+node('mster') {
  // Note : this step is only needed if you're using direct Groovy scripting
  stage 'Checkout Git project'
  git url: 'https://github.com/propelup/simple-java-maven-app.git'
