@@ -11,7 +11,8 @@ node('master') {
  sh "mvn -B -Dmaven.test.failure.ignore verify"
  step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
  stage 'Security Scan using the SG Tool'
- sh "docker run --rm --net=host -v $PWD:/project -v /var/run/docker.sock:/var/run/docker.sock --name scancont -e SEC_BASE_PATH=http://54.79.131.67:8080 -e CLAIR_ADDR=54.79.131.67 sg-scanner"
+ sh "echo 'pwd' and ${env.WORKSPACE} "
+ sh "docker run --rm --net=host -v "pwd":/project -v /var/run/docker.sock:/var/run/docker.sock --name scancont -e SEC_BASE_PATH=http://54.79.131.67:8080 -e CLAIR_ADDR=54.79.131.67 sg-scanner"
 }
 def version() {
  def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
