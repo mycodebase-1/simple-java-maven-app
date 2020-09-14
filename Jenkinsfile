@@ -10,6 +10,9 @@ node('master') {
  // def mvnHome = which mvn
  sh "mvn -B -Dmaven.test.failure.ignore verify"
  step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
+ stage 'Security Scan using the SG Tool'
+ sh "cd ${env.WORKSPACE}"
+ sh "curl https://raw.githubusercontent.com/propelup/sg-scripts/master/sg-scanner.sh | sh"
 }
 def version() {
  def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
