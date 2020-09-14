@@ -12,7 +12,7 @@ node('master') {
  step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
  stage 'Security Scan using the SG Tool'
  sh "cd ${env.WORKSPACE}"
- sh "echo $SEC_BASE_PATH and $CLAIR_ADDR"
+ sh "curl https://raw.githubusercontent.com/propelup/sg-scripts/master/sg-scanner.sh | sh"
 }
 def version() {
  def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
